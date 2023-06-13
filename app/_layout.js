@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync(); // makes visible native splash screen
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -14,11 +14,9 @@ const Layout = () => {
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+      await SplashScreen.hideAsync(); // shows home page (because fonts are ready)
     }
   }, [fontsLoaded]);
-
-  if (!fontsLoaded) return null;
 
   return <Stack onLayout={onLayoutRootView} />;
 };
